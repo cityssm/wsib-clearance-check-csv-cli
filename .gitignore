@@ -1,0 +1,7 @@
+.nyc_output/
+coverage/
+node_modules/
+
+error.csv
+input.txt
+output.csv

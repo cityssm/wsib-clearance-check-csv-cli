@@ -1,0 +1,43 @@
+{
+  "name": "wsib-clearance-check-csv-cli",
+  "version": "1.0.0",
+  "description": "A command line tool to retrieve clearance certificates from the WSIB website.",
+  "type": "module",
+  "exports": "./lookup.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cityssm/wsib-clearance-check-csv-cli.git"
+  },
+  "keywords": [
+    "wsib"
+  ],
+  "author": "The Corporation of the City of Sault Ste. Marie",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cityssm/wsib-clearance-check-csv-cli/issues"
+  },
+  "homepage": "https://github.com/cityssm/wsib-clearance-check-csv-cli#readme",
+  "dependencies": {
+    "@cityssm/wsib-clearance-check": "^2.0.1",
+    "minimist": "^1.2.5",
+    "papaparse": "^5.3.1"
+  },
+  "private": true,
+  "devDependencies": {
+    "@types/minimist": "^1.2.2",
+    "@types/papaparse": "^5.2.6",
+    "@typescript-eslint/eslint-plugin": "^4.30.0",
+    "@typescript-eslint/parser": "^4.30.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-unicorn": "^35.0.0"
+  }
+}
