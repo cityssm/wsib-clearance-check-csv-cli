@@ -25,6 +25,7 @@ export const loadAccountNumbers = (inputFile: string): string[] => {
 };
 
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const writeCSVFile = (outputFile: string, outputData: any[]): void => {
 
   const csvData = Papa.unparse(outputData);

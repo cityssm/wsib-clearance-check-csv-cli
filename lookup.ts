@@ -20,6 +20,8 @@ const usage = `
 
 const run = async () => {
 
+  console.log();
+
   const argv = minimist(process.argv.slice(2));
 
   const inputFile = argv.input || argv.i;
@@ -45,31 +47,46 @@ const run = async () => {
 
   const accountNumbers = loadAccountNumbers(inputFile);
 
+  console.log("- " + accountNumbers.length + " account numbers to process.");
+
   const outputResults: wsibTypes.WSIBClearance_Success[] = [];
   const errorResults: wsibTypes.WSIBClearance_Failure[] = [];
 
-  for (const accountNumber of accountNumbers) {
+  for (const [accountNumberIndex, accountNumber] of accountNumbers.entries()) {
 
     if (!accountNumber) {
       continue;
     }
 
+    console.log("- Processing " + (accountNumberIndex + 1).toString() + "/" + accountNumbers.length +
+      " (success = " + outputResults.length.toString() + ", error = " + errorResults.length.toString() + ")");
+
     const results = await getClearanceByAccountNumber(accountNumber);
 
     if (results.success) {
-      delete(results.contractorNAICSCodes);
+
+      delete (results.contractorNAICSCodes);
+      delete (results.success);
       outputResults.push(results);
+
     } else {
+      delete (results.success);
       errorResults.push(results as wsibTypes.WSIBClearance_Failure);
     }
   }
 
   if (outputResults.length > 0) {
+    console.log("- Writing " + outputResults.length.toString() + " records to " + outputFile);
     writeCSVFile(outputFile, outputResults);
+  } else {
+    console.log("- No successful records to write to " + outputFile);
   }
 
   if (errorResults.length > 0) {
+    console.log("- Writing " + errorResults.length.toString() + " records to " + errorFile);
     writeCSVFile(errorFile, errorResults);
+  } else {
+    console.log("- No error records to write to " + errorFile);
   }
 
   console.log("Done.");
