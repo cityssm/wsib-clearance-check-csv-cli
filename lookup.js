@@ -40,8 +40,10 @@ const run = async () => {
         if (!accountNumber || accountNumber === "") {
             continue;
         }
-        console.log("- Processing " + (accountNumberIndex + 1).toString() + "/" + accountNumbers.length +
-            " (success = " + outputResults.length.toString() + ", error = " + errorResults.length.toString() + ")");
+        console.log("- Processing \"" + accountNumber + "\"" +
+            " (" + (accountNumberIndex + 1).toString() + "/" + accountNumbers.length.toString() +
+            ", success = " + outputResults.length.toString() +
+            ", error = " + errorResults.length.toString() + ")");
         const results = await getClearanceByAccountNumber(accountNumber);
         if (results.success) {
             delete (results.contractorNAICSCodes);

@@ -12,4 +12,4 @@ jobs:
           node-version: '14'
       - run: npm install -g npm@7
       - run: npm ci
-      - run: npm run test
+      - run: npm run test:csv

@@ -58,8 +58,10 @@ const run = async () => {
       continue;
     }
 
-    console.log("- Processing " + (accountNumberIndex + 1).toString() + "/" + accountNumbers.length +
-      " (success = " + outputResults.length.toString() + ", error = " + errorResults.length.toString() + ")");
+    console.log("- Processing \"" + accountNumber + "\"" +
+      " (" + (accountNumberIndex + 1).toString() + "/" + accountNumbers.length.toString() +
+      ", success = " + outputResults.length.toString() +
+      ", error = " + errorResults.length.toString() + ")");
 
     const results = await getClearanceByAccountNumber(accountNumber);
 

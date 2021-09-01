@@ -5,7 +5,9 @@
   "type": "module",
   "exports": "./lookup.js",
   "scripts": {
-    "test": "node lookup -i test/input.txt -o test/output.csv -e test/error.csv"
+    "start": "node lookup",
+    "test": "node lookup -i test/input.txt -o test/output.csv -e test/error.csv",
+    "test:csv": "node lookup -i test/input.csv -o test/output.csv -e test/error.csv"
   },
   "engines": {
     "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
@@ -24,7 +26,7 @@
   },
   "homepage": "https://github.com/cityssm/wsib-clearance-check-csv-cli#readme",
   "dependencies": {
-    "@cityssm/wsib-clearance-check": "^2.0.1",
+    "@cityssm/wsib-clearance-check": "^2.0.3",
     "minimist": "^1.2.5",
     "papaparse": "^5.3.1"
   },
