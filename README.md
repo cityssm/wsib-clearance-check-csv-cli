@@ -1,6 +1,8 @@
 # wsib-clearance-check-csv-cli
 
+[![Codacy grade](https://img.shields.io/codacy/grade/3fb7c647878846aa9323994115aa57a9)](https://app.codacy.com/gh/cityssm/wsib-clearance-check-csv-cli/dashboard)
 [![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/cityssm/wsib-clearance-check-csv-cli)](https://codeclimate.com/github/cityssm/wsib-clearance-check-csv-cli)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/cityssm/wsib-clearance-check-csv-cli/Testing)](https://github.com/cityssm/wsib-clearance-check-csv-cli/actions/workflows/test.yml)
 [![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/cityssm/wsib-clearance-check-csv-cli)](https://app.snyk.io/org/cityssm/project/9605d6ee-84f6-41f6-a0c4-b5daa96160ae)
 
 A command line tool to retrieve clearance certificates from the WSIB website.
@@ -23,6 +25,7 @@ node lookup
 `-i inputFile.txt`
 
 -   Specifies the path to the text file that should be parsed.
+
 -   The file should contain each account number on a new line.
     See the [test input file](test/input.txt) for an example.
 
@@ -46,8 +49,12 @@ Save to the folder of your choice.
 
 Install the dependencies.
 
-    npm install
+```sh
+npm install
+```
 
 See if it works.
 
-    npm test
+```sh
+npm test
+```
