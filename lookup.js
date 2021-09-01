@@ -37,7 +37,7 @@ const run = async () => {
     const outputResults = [];
     const errorResults = [];
     for (const [accountNumberIndex, accountNumber] of accountNumbers.entries()) {
-        if (!accountNumber) {
+        if (!accountNumber || accountNumber === "") {
             continue;
         }
         console.log("- Processing " + (accountNumberIndex + 1).toString() + "/" + accountNumbers.length +

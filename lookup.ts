@@ -54,7 +54,7 @@ const run = async () => {
 
   for (const [accountNumberIndex, accountNumber] of accountNumbers.entries()) {
 
-    if (!accountNumber) {
+    if (!accountNumber || accountNumber === "") {
       continue;
     }
 

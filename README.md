@@ -1,5 +1,8 @@
 # wsib-clearance-check-csv-cli
 
+[![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/cityssm/wsib-clearance-check-csv-cli)](https://codeclimate.com/github/cityssm/wsib-clearance-check-csv-cli)
+[![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/cityssm/wsib-clearance-check-csv-cli)](https://app.snyk.io/org/cityssm/project/9605d6ee-84f6-41f6-a0c4-b5daa96160ae)
+
 A command line tool to retrieve clearance certificates from the WSIB website.
 
 Looking to tie WSIB clearance certificate lookups into your own project?
