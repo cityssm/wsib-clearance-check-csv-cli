@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   push:
 jobs:
-  lighthouseci:
+  testCSV:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
