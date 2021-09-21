@@ -1,6 +1,6 @@
 import minimist from "minimist";
 import { loadAccountNumbers, writeCSVFile } from "./file-processor.js";
-import { getClearanceByAccountNumber } from "@cityssm/wsib-clearance-check";
+import { setHeadless, getClearanceByAccountNumber } from "@cityssm/wsib-clearance-check";
 
 import type * as wsibTypes from "@cityssm/wsib-clearance-check/types";
 
@@ -11,7 +11,8 @@ const usage = `
 | node lookup                                             |
 |      -input inputFile.txt                               |
 |      -output outputFile.csv                             |
-|      -error errorFile.csv                             |
+|      -error errorFile.csv                               |
+|      [-real]                                            |
 | ------------------------------------------------------- |
 | DOCUMENTATION                                           |
 | https://github.com/cityssm/wsib-clearance-check-csv-cli |
@@ -45,6 +46,13 @@ const run = async () => {
     throw new Error("-error parameter missing");
   }
 
+  const realBrowser = argv.real || argv.r;
+
+  if (realBrowser) {
+    console.log("- Running in real browser mode.")
+    setHeadless(false);
+  }
+
   const accountNumbers = loadAccountNumbers(inputFile);
 
   console.log("- " + accountNumbers.length + " account numbers to process.");
@@ -54,14 +62,11 @@ const run = async () => {
 
   for (const [accountNumberIndex, accountNumber] of accountNumbers.entries()) {
 
-    if (!accountNumber || accountNumber === "") {
-      continue;
-    }
-
     console.log("- Processing \"" + accountNumber + "\"" +
       " (" + (accountNumberIndex + 1).toString() + "/" + accountNumbers.length.toString() +
       ", success = " + outputResults.length.toString() +
-      ", error = " + errorResults.length.toString() + ")");
+      (errorResults.length > 0 ? ", error = " + errorResults.length.toString() : "") +
+      ")");
 
     const results = await getClearanceByAccountNumber(accountNumber);
 

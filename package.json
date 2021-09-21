@@ -7,7 +7,8 @@
   "scripts": {
     "start": "node lookup",
     "test": "node lookup -i test/input.txt -o test/output.csv -e test/error.csv",
-    "test:csv": "node lookup -i test/input.csv -o test/output.csv -e test/error.csv"
+    "test:csv": "node lookup -i test/input.csv -o test/output.csv -e test/error.csv",
+    "test:real": "node lookup -i test/input.csv -o test/output.csv -e test/error.csv -r"
   },
   "engines": {
     "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
@@ -26,7 +27,7 @@
   },
   "homepage": "https://github.com/cityssm/wsib-clearance-check-csv-cli#readme",
   "dependencies": {
-    "@cityssm/wsib-clearance-check": "^2.0.3",
+    "@cityssm/wsib-clearance-check": "^2.1.0",
     "minimist": "^1.2.5",
     "papaparse": "^5.3.1"
   },
@@ -34,8 +35,8 @@
   "devDependencies": {
     "@types/minimist": "^1.2.2",
     "@types/papaparse": "^5.2.6",
-    "@typescript-eslint/eslint-plugin": "^4.31.1",
-    "@typescript-eslint/parser": "^4.31.1",
+    "@typescript-eslint/eslint-plugin": "^4.31.2",
+    "@typescript-eslint/parser": "^4.31.2",
     "eslint": "^7.32.0",
     "eslint-plugin-import": "^2.24.2",
     "eslint-plugin-node": "^11.1.0",

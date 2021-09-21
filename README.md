@@ -17,6 +17,7 @@ node lookup
      -input [inputFile.txt | inputFile.csv]
      -output [outputFile.csv]
      -error [errorFile.csv]
+     [-real]
 ```
 
 ### Parameters
@@ -64,6 +65,13 @@ node lookup
     -   accountNumber
     -   error
     -   errorURL
+
+`-real` or
+`-r`
+
+-   Runs in "real browser" mode, as opposed to "headless browser" mode.
+
+-   Useful for debugging, but not recommended for production use.
 
 ## Setup
 

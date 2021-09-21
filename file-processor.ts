@@ -16,8 +16,11 @@ export const loadAccountNumbers = (inputFile: string): string[] => {
   const accountNumbers: string[] = [];
 
   for (const row of csvRows) {
-    if (row[0] && row[0] !== "") {
-      accountNumbers.push(row[0]);
+
+    const potentialAccountNumber = (row[0] ? row[0].toString() : "").trim();
+
+    if (potentialAccountNumber !== "" && /^\d+$/.test(potentialAccountNumber)) {
+      accountNumbers.push(potentialAccountNumber);
     }
   }
 
