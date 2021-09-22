@@ -1,6 +1,6 @@
 import minimist from "minimist";
 import { loadAccountNumbers, writeCSVFile } from "./file-processor.js";
-import { setHeadless, getClearanceByAccountNumber } from "@cityssm/wsib-clearance-check";
+import { setHeadless, getClearanceByAccountNumber, cleanUpBrowser } from "@cityssm/wsib-clearance-check";
 const usage = `
 -----------------------------------------------------------
 | USAGE                                                   |
@@ -42,22 +42,27 @@ const run = async () => {
     console.log("- " + accountNumbers.length + " account numbers to process.");
     const outputResults = [];
     const errorResults = [];
-    for (const [accountNumberIndex, accountNumber] of accountNumbers.entries()) {
-        console.log("- Processing \"" + accountNumber + "\"" +
-            " (" + (accountNumberIndex + 1).toString() + "/" + accountNumbers.length.toString() +
-            ", success = " + outputResults.length.toString() +
-            (errorResults.length > 0 ? ", error = " + errorResults.length.toString() : "") +
-            ")");
-        const results = await getClearanceByAccountNumber(accountNumber);
-        if (results.success) {
-            delete (results.contractorNAICSCodes);
-            delete (results.success);
-            outputResults.push(results);
+    try {
+        for (const [accountNumberIndex, accountNumber] of accountNumbers.entries()) {
+            console.log("- Processing \"" + accountNumber + "\"" +
+                " (" + (accountNumberIndex + 1).toString() + "/" + accountNumbers.length.toString() +
+                ", success = " + outputResults.length.toString() +
+                (errorResults.length > 0 ? ", error = " + errorResults.length.toString() : "") +
+                ")");
+            const results = await getClearanceByAccountNumber(accountNumber);
+            if (results.success) {
+                delete (results.contractorNAICSCodes);
+                delete (results.success);
+                outputResults.push(results);
+            }
+            else {
+                delete (results.success);
+                errorResults.push(results);
+            }
         }
-        else {
-            delete (results.success);
-            errorResults.push(results);
-        }
+    }
+    finally {
+        await cleanUpBrowser();
     }
     if (outputResults.length > 0) {
         console.log("- Writing " + outputResults.length.toString() + " records to " + outputFile);

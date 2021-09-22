@@ -1,6 +1,6 @@
 import minimist from "minimist";
 import { loadAccountNumbers, writeCSVFile } from "./file-processor.js";
-import { setHeadless, getClearanceByAccountNumber } from "@cityssm/wsib-clearance-check";
+import { setHeadless, getClearanceByAccountNumber, cleanUpBrowser } from "@cityssm/wsib-clearance-check";
 
 import type * as wsibTypes from "@cityssm/wsib-clearance-check/types";
 
@@ -60,26 +60,30 @@ const run = async () => {
   const outputResults: wsibTypes.WSIBClearance_Success[] = [];
   const errorResults: wsibTypes.WSIBClearance_Failure[] = [];
 
-  for (const [accountNumberIndex, accountNumber] of accountNumbers.entries()) {
+  try {
+    for (const [accountNumberIndex, accountNumber] of accountNumbers.entries()) {
 
-    console.log("- Processing \"" + accountNumber + "\"" +
-      " (" + (accountNumberIndex + 1).toString() + "/" + accountNumbers.length.toString() +
-      ", success = " + outputResults.length.toString() +
-      (errorResults.length > 0 ? ", error = " + errorResults.length.toString() : "") +
-      ")");
+      console.log("- Processing \"" + accountNumber + "\"" +
+        " (" + (accountNumberIndex + 1).toString() + "/" + accountNumbers.length.toString() +
+        ", success = " + outputResults.length.toString() +
+        (errorResults.length > 0 ? ", error = " + errorResults.length.toString() : "") +
+        ")");
 
-    const results = await getClearanceByAccountNumber(accountNumber);
+      const results = await getClearanceByAccountNumber(accountNumber);
 
-    if (results.success) {
+      if (results.success) {
 
-      delete (results.contractorNAICSCodes);
-      delete (results.success);
-      outputResults.push(results);
+        delete (results.contractorNAICSCodes);
+        delete (results.success);
+        outputResults.push(results);
 
-    } else {
-      delete (results.success);
-      errorResults.push(results as wsibTypes.WSIBClearance_Failure);
+      } else {
+        delete (results.success);
+        errorResults.push(results as wsibTypes.WSIBClearance_Failure);
+      }
     }
+  } finally {
+    await cleanUpBrowser();
   }
 
   if (outputResults.length > 0) {

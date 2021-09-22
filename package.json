@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/cityssm/wsib-clearance-check-csv-cli#readme",
   "dependencies": {
-    "@cityssm/wsib-clearance-check": "^2.1.0",
+    "@cityssm/wsib-clearance-check": "^3.0.0-beta",
     "minimist": "^1.2.5",
     "papaparse": "^5.3.1"
   },
