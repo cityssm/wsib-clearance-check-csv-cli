@@ -82,8 +82,15 @@ const run = async () => {
         errorResults.push(results as wsibTypes.WSIBClearance_Failure);
       }
     }
+  } catch (fatalError) {
+    console.error(fatalError);
+
   } finally {
-    await cleanUpBrowser();
+    try {
+      await cleanUpBrowser();
+    } catch {
+      // ignore
+    }
   }
 
   if (outputResults.length > 0) {

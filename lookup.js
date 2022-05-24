@@ -61,8 +61,15 @@ const run = async () => {
             }
         }
     }
+    catch (fatalError) {
+        console.error(fatalError);
+    }
     finally {
-        await cleanUpBrowser();
+        try {
+            await cleanUpBrowser();
+        }
+        catch (_a) {
+        }
     }
     if (outputResults.length > 0) {
         console.log("- Writing " + outputResults.length.toString() + " records to " + outputFile);
