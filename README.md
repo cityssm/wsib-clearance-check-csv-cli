@@ -92,3 +92,8 @@ See if it works.
 ```sh
 npm test
 ```
+
+## 🙏 Thanks
+
+This project was developed in collaboration with [FRANCOachat](https://ceafrancoachat.ca/),
+an organization that provides procurement services to several Ontario school boards.
