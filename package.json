@@ -37,7 +37,7 @@
     "@types/papaparse": "^5.3.5",
     "@typescript-eslint/eslint-plugin": "^5.42.0",
     "@typescript-eslint/parser": "^5.42.0",
-    "eslint": "^8.26.0",
+    "eslint": "^8.27.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.1.1",
