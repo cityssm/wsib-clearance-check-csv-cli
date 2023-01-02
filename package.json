@@ -34,7 +34,7 @@
   "private": true,
   "devDependencies": {
     "@types/minimist": "^1.2.2",
-    "@types/papaparse": "^5.3.5",
+    "@types/papaparse": "^5.3.7",
     "@typescript-eslint/eslint-plugin": "^5.42.0",
     "@typescript-eslint/parser": "^5.42.0",
     "eslint": "^8.26.0",
