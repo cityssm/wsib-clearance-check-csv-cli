@@ -1,8 +1,8 @@
 # wsib-clearance-check-csv-cli
 
-[![Codacy grade](https://img.shields.io/codacy/grade/3fb7c647878846aa9323994115aa57a9)](https://app.codacy.com/gh/cityssm/wsib-clearance-check-csv-cli/dashboard)
-[![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/cityssm/wsib-clearance-check-csv-cli)](https://codeclimate.com/github/cityssm/wsib-clearance-check-csv-cli)
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/cityssm/wsib-clearance-check-csv-cli/Testing)](https://github.com/cityssm/wsib-clearance-check-csv-cli/actions/workflows/test.yml)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/3fb7c647878846aa9323994115aa57a9)](https://www.codacy.com/gh/cityssm/wsib-clearance-check-csv-cli/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=cityssm/wsib-clearance-check-csv-cli&amp;utm_campaign=Badge_Grade)
+[![Maintainability](https://api.codeclimate.com/v1/badges/4ca34e70fd4186fff0ab/maintainability)](https://codeclimate.com/github/cityssm/wsib-clearance-check-csv-cli/maintainability)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/cityssm/wsib-clearance-check-csv-cli/test.yml)](https://github.com/cityssm/wsib-clearance-check-csv-cli/actions/workflows/test.yml)
 [![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/cityssm/wsib-clearance-check-csv-cli)](https://app.snyk.io/org/cityssm/project/9605d6ee-84f6-41f6-a0c4-b5daa96160ae)
 
 A command line tool to simplify retrieving clearance certificates from the WSIB website.
