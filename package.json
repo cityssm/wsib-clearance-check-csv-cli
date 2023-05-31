@@ -30,7 +30,7 @@
   "dependencies": {
     "@cityssm/wsib-clearance-check": "^3.0.5",
     "minimist": "^1.2.8",
-    "xlsx": "^0.18.5"
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.19.3/xlsx-0.19.3.tgz"
   },
   "devDependencies": {
     "@types/minimist": "^1.2.2",

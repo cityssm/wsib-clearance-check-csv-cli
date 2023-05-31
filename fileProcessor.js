@@ -1,4 +1,6 @@
+import fs from 'node:fs';
 import XLSX from 'xlsx';
+XLSX.set_fs(fs);
 const cellNameRegularExpression = /^A\d+$/;
 const accountNumberRegularExpression = /^\d+$/;
 export function loadAccountNumbers(inputFile) {
