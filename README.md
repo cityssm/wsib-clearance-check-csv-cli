@@ -22,7 +22,7 @@ node lookup
 
 ### Parameters
 
-`-input [inputFile.txt | inputFile.csv | inputFile.xlsx]` or
+`-input [inputFile.txt | inputFile.csv | inputFile.xlsx]` or<br />
 `-i [inputFile.txt | inputFile.csv | inputFile.xlsx]`
 
 - Specifies the path to the file that should be parsed.
