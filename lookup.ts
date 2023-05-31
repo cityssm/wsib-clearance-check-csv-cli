@@ -1,8 +1,12 @@
-import minimist from "minimist";
-import { loadAccountNumbers, writeCSVFile } from "./file-processor.js";
-import { setHeadless, getClearanceByAccountNumber, cleanUpBrowser } from "@cityssm/wsib-clearance-check";
+import {
+  setHeadless,
+  getClearanceByAccountNumber,
+  cleanUpBrowser
+} from '@cityssm/wsib-clearance-check'
+import type * as wsibTypes from '@cityssm/wsib-clearance-check/types'
+import minimist from 'minimist'
 
-import type * as wsibTypes from "@cityssm/wsib-clearance-check/types";
+import { loadAccountNumbers, writeCSVFile } from './fileProcessor.js'
 
 const usage = `
 -----------------------------------------------------------
@@ -17,97 +21,112 @@ const usage = `
 | DOCUMENTATION                                           |
 | https://github.com/cityssm/wsib-clearance-check-csv-cli |
 -----------------------------------------------------------
-`;
+`
 
 const run = async () => {
+  console.log()
 
-  console.log();
+  const argv = minimist(process.argv.slice(2))
 
-  const argv = minimist(process.argv.slice(2));
-
-  const inputFile = argv.input || argv.i;
+  const inputFile = argv.input || argv.i
 
   if (!inputFile) {
-    console.log(usage);
-    throw new Error("-input parameter missing");
+    console.log(usage)
+    throw new Error('-input parameter missing')
   }
 
-  const outputFile = argv.output || argv.o;
+  const outputFile = argv.output || argv.o
 
   if (!outputFile) {
-    console.log(usage);
-    throw new Error("-output parameter missing");
+    console.log(usage)
+    throw new Error('-output parameter missing')
   }
 
-  const errorFile = argv.error || argv.e;
+  const errorFile = argv.error || argv.e
 
   if (!errorFile) {
-    console.log(usage);
-    throw new Error("-error parameter missing");
+    console.log(usage)
+    throw new Error('-error parameter missing')
   }
 
-  const realBrowser = argv.real || argv.r;
+  const realBrowser = argv.real || argv.r
 
   if (realBrowser) {
-    console.log("- Running in real browser mode.")
-    setHeadless(false);
+    console.log('- Running in real browser mode.')
+    setHeadless(false)
   }
 
-  const accountNumbers = loadAccountNumbers(inputFile);
+  const accountNumbers = loadAccountNumbers(inputFile)
 
-  console.log("- " + accountNumbers.length + " account numbers to process.");
+  console.log('- ' + accountNumbers.length + ' account numbers to process.')
 
-  const outputResults: wsibTypes.WSIBClearance_Success[] = [];
-  const errorResults: wsibTypes.WSIBClearance_Failure[] = [];
+  const outputResults: wsibTypes.WSIBClearance_Success[] = []
+  const errorResults: wsibTypes.WSIBClearance_Failure[] = []
 
   try {
-    for (const [accountNumberIndex, accountNumber] of accountNumbers.entries()) {
+    for (const [
+      accountNumberIndex,
+      accountNumber
+    ] of accountNumbers.entries()) {
+      console.log(
+        '- Processing "' +
+          accountNumber +
+          '"' +
+          ' (' +
+          (accountNumberIndex + 1).toString() +
+          '/' +
+          accountNumbers.length.toString() +
+          ', success = ' +
+          outputResults.length.toString() +
+          (errorResults.length > 0
+            ? ', error = ' + errorResults.length.toString()
+            : '') +
+          ')'
+      )
 
-      console.log("- Processing \"" + accountNumber + "\"" +
-        " (" + (accountNumberIndex + 1).toString() + "/" + accountNumbers.length.toString() +
-        ", success = " + outputResults.length.toString() +
-        (errorResults.length > 0 ? ", error = " + errorResults.length.toString() : "") +
-        ")");
-
-      const results = await getClearanceByAccountNumber(accountNumber);
+      const results = await getClearanceByAccountNumber(accountNumber)
 
       if (results.success) {
-
-        delete (results.contractorNAICSCodes);
-        delete (results.success);
-        outputResults.push(results);
-
+        delete results.contractorNAICSCodes
+        delete results.success
+        outputResults.push(results)
       } else {
-        delete (results.success);
-        errorResults.push(results as wsibTypes.WSIBClearance_Failure);
+        delete results.success
+        errorResults.push(results as wsibTypes.WSIBClearance_Failure)
       }
     }
   } catch (fatalError) {
-    console.error(fatalError);
-
+    console.error(fatalError)
   } finally {
     try {
-      await cleanUpBrowser();
+      await cleanUpBrowser()
     } catch {
       // ignore
     }
   }
 
   if (outputResults.length > 0) {
-    console.log("- Writing " + outputResults.length.toString() + " records to " + outputFile);
-    writeCSVFile(outputFile, outputResults);
+    console.log(
+      '- Writing ' +
+        outputResults.length.toString() +
+        ' records to ' +
+        outputFile
+    )
+    writeCSVFile(outputFile, outputResults)
   } else {
-    console.log("- No successful records to write to " + outputFile);
+    console.log('- No successful records to write to ' + outputFile)
   }
 
   if (errorResults.length > 0) {
-    console.log("- Writing " + errorResults.length.toString() + " records to " + errorFile);
-    writeCSVFile(errorFile, errorResults);
+    console.log(
+      '- Writing ' + errorResults.length.toString() + ' records to ' + errorFile
+    )
+    writeCSVFile(errorFile, errorResults)
   } else {
-    console.log("- No error records to write to " + errorFile);
+    console.log('- No error records to write to ' + errorFile)
   }
 
-  console.log("Done.");
-};
+  console.log('Done.')
+}
 
-run();
+run()

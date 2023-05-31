@@ -1,6 +1,6 @@
 {
   "name": "wsib-clearance-check-csv-cli",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A command line tool to retrieve clearance certificates from the WSIB website.",
   "type": "module",
   "exports": "./lookup.js",
@@ -8,7 +8,8 @@
     "start": "node lookup",
     "test": "node lookup -i test/input.txt -o test/output.csv -e test/error.csv",
     "test:csv": "node lookup -i test/input.csv -o test/output.csv -e test/error.csv",
-    "test:real": "node lookup -i test/input.csv -o test/output.csv -e test/error.csv -r"
+    "test:real": "node lookup -i test/input.csv -o test/output.csv -e test/error.csv -r",
+    "test:xlsx": "node lookup -i test/input.xlsx -o test/output.csv -e test/error.csv"
   },
   "engines": {
     "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
@@ -27,20 +28,19 @@
   },
   "homepage": "https://github.com/cityssm/wsib-clearance-check-csv-cli#readme",
   "dependencies": {
-    "@cityssm/wsib-clearance-check": "^3.0.3",
-    "minimist": "^1.2.7",
-    "papaparse": "^5.3.2"
+    "@cityssm/wsib-clearance-check": "^3.0.5",
+    "minimist": "^1.2.8",
+    "xlsx": "^0.18.5"
   },
-  "private": true,
   "devDependencies": {
     "@types/minimist": "^1.2.2",
-    "@types/papaparse": "^5.3.5",
-    "@typescript-eslint/eslint-plugin": "^5.42.0",
-    "@typescript-eslint/parser": "^5.42.0",
-    "eslint": "^8.26.0",
-    "eslint-plugin-import": "^2.26.0",
+    "@typescript-eslint/eslint-plugin": "^5.59.8",
+    "@typescript-eslint/parser": "^5.59.8",
+    "eslint": "^8.41.0",
+    "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.1.1",
-    "eslint-plugin-unicorn": "^44.0.2"
-  }
+    "eslint-plugin-unicorn": "^47.0.0"
+  },
+  "private": true
 }
