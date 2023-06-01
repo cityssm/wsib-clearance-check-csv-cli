@@ -8,6 +8,11 @@ import minimist from 'minimist'
 
 import { loadAccountNumbers, writeCSVFile } from './fileProcessor.js'
 
+interface WSIBClearance_Failure_CSV {
+  errorURL: string
+  error: string
+}
+
 const usage = `
 -----------------------------------------------------------
 | USAGE                                                   |
@@ -61,7 +66,7 @@ const run = async () => {
   console.log('- ' + accountNumbers.length + ' account numbers to process.')
 
   const outputResults: wsibTypes.WSIBClearance_Success[] = []
-  const errorResults: wsibTypes.WSIBClearance_Failure[] = []
+  const errorResults: WSIBClearance_Failure_CSV[] = []
 
   try {
     for (const [
@@ -91,8 +96,12 @@ const run = async () => {
         delete results.success
         outputResults.push(results)
       } else {
-        delete results.success
-        errorResults.push(results as wsibTypes.WSIBClearance_Failure)
+        const errorResult: WSIBClearance_Failure_CSV = {
+          error: (results as wsibTypes.WSIBClearance_Failure).error?.message ?? '',
+          errorURL: (results as wsibTypes.WSIBClearance_Failure).errorURL ?? ''
+        }
+
+        errorResults.push(errorResult)
       }
     }
   } catch (fatalError) {

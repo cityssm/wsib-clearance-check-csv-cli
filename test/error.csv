@@ -1,2 +1,2 @@
-﻿accountNumber,error,errorURL
-1234,,https://clearances.wsib.ca/Clearances/eclearance/GCSearch_searchcontractor_GS.action
+﻿error,errorURL
+Clearance certificate link not found.,https://clearances.wsib.ca/Clearances/eclearance/GCSearch_searchcontractor_GS.action

@@ -16,6 +16,7 @@ const usage = `
 -----------------------------------------------------------
 `;
 const run = async () => {
+    var _a, _b, _c;
     console.log();
     const argv = minimist(process.argv.slice(2));
     const inputFile = argv.input || argv.i;
@@ -64,8 +65,11 @@ const run = async () => {
                 outputResults.push(results);
             }
             else {
-                delete results.success;
-                errorResults.push(results);
+                const errorResult = {
+                    error: (_b = (_a = results.error) === null || _a === void 0 ? void 0 : _a.message) !== null && _b !== void 0 ? _b : '',
+                    errorURL: (_c = results.errorURL) !== null && _c !== void 0 ? _c : ''
+                };
+                errorResults.push(errorResult);
             }
         }
     }
@@ -76,7 +80,7 @@ const run = async () => {
         try {
             await cleanUpBrowser();
         }
-        catch (_a) {
+        catch (_d) {
         }
     }
     if (outputResults.length > 0) {
