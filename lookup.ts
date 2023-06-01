@@ -9,6 +9,7 @@ import minimist from 'minimist'
 import { loadAccountNumbers, writeCSVFile } from './fileProcessor.js'
 
 interface WSIBClearance_Failure_CSV {
+  accountNumber: string
   errorURL: string
   error: string
 }
@@ -97,7 +98,9 @@ const run = async () => {
         outputResults.push(results)
       } else {
         const errorResult: WSIBClearance_Failure_CSV = {
-          error: (results as wsibTypes.WSIBClearance_Failure).error?.message ?? '',
+          accountNumber: results.accountNumber,
+          error:
+            (results as wsibTypes.WSIBClearance_Failure).error?.message ?? '',
           errorURL: (results as wsibTypes.WSIBClearance_Failure).errorURL ?? ''
         }
 

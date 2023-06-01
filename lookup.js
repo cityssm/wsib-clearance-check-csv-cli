@@ -66,6 +66,7 @@ const run = async () => {
             }
             else {
                 const errorResult = {
+                    accountNumber: results.accountNumber,
                     error: (_b = (_a = results.error) === null || _a === void 0 ? void 0 : _a.message) !== null && _b !== void 0 ? _b : '',
                     errorURL: (_c = results.errorURL) !== null && _c !== void 0 ? _c : ''
                 };
